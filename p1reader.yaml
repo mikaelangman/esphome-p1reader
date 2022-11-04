@@ -25,7 +25,7 @@ captive_portal:
 # Enable logging
 logger:
   level: DEBUG
-  baud_rate: 115200 # disable logging over uart
+  baud_rate: 0 # disable logging over uart
   
 # Enable Home Assistant API
 api:
@@ -36,11 +36,16 @@ ota:
 
 uart:
   id: uart_bus
-  rx_pin:
-      number: RX
-      inverted: false
+  rx_pin: 
+    number: RX
+    inverted: false
+    mode:
+      input: true
+      #pullup: true
+  rx_buffer_size: 4096
   baud_rate: 115200
   
+
 sensor:
 - platform: custom
   lambda: |-
@@ -92,10 +97,10 @@ sensor:
     unit_of_measurement: kvarh
     accuracy_decimals: 3
   - name: "Momentary Active Import"
-    unit_of_measurement: kW
+    unit_of_measurement: W
     accuracy_decimals: 3
   - name: "Momentary Active Export"
-    unit_of_measurement: kW
+    unit_of_measurement: W
     accuracy_decimals: 3
   - name: "Momentary Reactive Import"
     unit_of_measurement: kvar
@@ -104,22 +109,22 @@ sensor:
     unit_of_measurement: kvar
     accuracy_decimals: 3
   - name: "Momentary Active Import Phase 1"
-    unit_of_measurement: kW
+    unit_of_measurement: W
     accuracy_decimals: 3
   - name: "Momentary Active Export Phase 1"
-    unit_of_measurement: kW
+    unit_of_measurement: W
     accuracy_decimals: 3
   - name: "Momentary Active Import Phase 2"
-    unit_of_measurement: kW
+    unit_of_measurement: W
     accuracy_decimals: 3
   - name: "Momentary Active Export Phase 2"
-    unit_of_measurement: kW
+    unit_of_measurement: W
     accuracy_decimals: 3
   - name: "Momentary Active Import Phase 3"
-    unit_of_measurement: kW
+    unit_of_measurement: W
     accuracy_decimals: 3
   - name: "Momentary Active Export Phase 3"
-    unit_of_measurement: kW
+    unit_of_measurement: W
     accuracy_decimals: 3
   - name: "Momentary Reactive Import Phase 1"
     unit_of_measurement: kvar
